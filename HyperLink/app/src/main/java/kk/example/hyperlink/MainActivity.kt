@@ -28,6 +28,8 @@ class MainActivity : ComponentActivity() {
                     .padding(50.dp)){
                     HyperLinkText(
 
+                        linkText =  listOf("privacy policy","legal document"),
+                        hyperlinks = listOf("https://google.com","https://facebook.com"),
                         fullText = "A privacy policy is a statement or legal document that discloses some or all of the ways a party gathers, uses, discloses, and manages a customer or client's data."
                     )
 
@@ -41,11 +43,11 @@ class MainActivity : ComponentActivity() {
 fun HyperLinkText(
     modifier : Modifier=Modifier,
     fullText:String,
-    linkText:List<String> = listOf("privacy policy","legal document"),
+    linkText:List<String> ,
     linkTextColor: Color=Color.Blue,
     linkTextFontWeight: FontWeight= FontWeight.Bold,
     linkTextDecoration: TextDecoration=TextDecoration.Underline,
-    hyperlinks : List<String> = listOf("https://google.com","https://facebook.com"),
+    hyperlinks : List<String>,
     fontSize:TextUnit= TextUnit.Unspecified
 ) {
 
@@ -74,7 +76,13 @@ fun HyperLinkText(
                 end=endText
             )
         }
-
+        addStyle(
+            style = SpanStyle(
+                fontSize = fontSize
+            ),
+            start = 0,
+            end = fullText.length
+        )
     }
 
     val uriHandler= LocalUriHandler.current
